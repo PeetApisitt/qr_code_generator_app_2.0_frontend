@@ -5,7 +5,6 @@ import requests
 import streamlit as st
 
 # --- กำหนดค่าการเชื่อมต่อ Backend ---
-# (หาก Deploy จริง ให้เปลี่ยน API_URL เป็นโดเมนของฝั่ง Backend Server เช่น https://my-backend.onrender.com/generate_qr)
 API_URL = "https://qr-code-generator-app-2-0-backend.onrender.com"
 
 # ใช้ Streamlit Secrets สำหรับเก็บ API Key (เพื่อไม่ให้รหัสหลุดไปใน Github)
@@ -13,7 +12,6 @@ API_URL = "https://qr-code-generator-app-2-0-backend.onrender.com"
 try:
     API_KEY = st.secrets["API_KEY"]
 except FileNotFoundError:
-    API_KEY = "my_super_secret_key_2026" # ค่าสำรองสำหรับรันทดสอบ
 
 # 1. Page Setup
 st.set_page_config(
