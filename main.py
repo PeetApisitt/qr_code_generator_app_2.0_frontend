@@ -10,7 +10,11 @@ API_KEY = st.secrets["API_KEY"]
 
 # 1. Page Setup
 st.set_page_config(
-    page_title="Dynamic QR Generator", page_icon="icon.ico", layout="centered", color="white"
+    page_title="Dynamic QR Generator", page_icon="icon.ico", layout="centered"
+)
+st.markdown(
+    "<h1 style='color: white;'>Dynamic QR Generator</h1>",
+    unsafe_allow_html=True,
 )
 
 # 2. Background Setup
