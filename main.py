@@ -4,13 +4,13 @@ import qrcode
 import requests
 import streamlit as st
 
-# Backend Connection
+# API Setup
 API_URL = st.secrets["API_URL"]
 API_KEY = st.secrets["API_KEY"]
 
 # 1. Page Setup
 st.set_page_config(
-    page_title="Dynamic QR Generator", page_icon="icon.ico", layout="centered"
+    page_title="Dynamic QR Generator", page_icon="icon.ico", layout="centered", color="white"
 )
 
 # 2. Background Setup
@@ -73,8 +73,8 @@ with select_center:
 # Header
 st.markdown(
     f"""
-    <h1 style='text-align: center;'>MyRTARF QR Code Check-in</h1>
-    <h3 style='text-align: center; font-size: 24px;'>{selected_location}</h3>
+    <h1 style='text-align: center; color: white;'>MyRTARF QR Code Check-in</h1>
+    <h3 style='text-align: center; font-size: 24px; color: white;'>{selected_location}</h3>
     """,
     unsafe_allow_html=True,
 )
@@ -108,7 +108,7 @@ def update_qr_code(selected_location):
             _, center, _ = st.columns([1, 2, 1])
             with center:
                 st.markdown(
-                    f"<h3 style='text-align: center;'>เวลาปัจจุบัน: {readable_time}</h3>",
+                    f"<h3 style='text-align: center; color: white;'>เวลาปัจจุบัน: {readable_time}</h3>",
                     unsafe_allow_html=True,
                 )
                 img_bytes = buf.getvalue()
