@@ -10,7 +10,7 @@ API_URL = "https://qr-code-generator-app-2-0-backend.onrender.com/generate_qr"
 try:
     API_KEY = st.secrets["API_KEY"]
 except FileNotFoundError:
-    
+    API_KEY = "my_super_secret_key_2026"
 
 # 1. Page Setup
 st.set_page_config(
