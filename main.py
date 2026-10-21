@@ -5,12 +5,8 @@ import requests
 import streamlit as st
 
 # Backend Connection
-API_URL = "https://qr-code-generator-app-2-0-backend.onrender.com/generate_qr"
-
-try:
-    API_KEY = st.secrets["API_KEY"]
-except FileNotFoundError:
-    API_KEY = ""
+API_URL = st.secrets["API_URL"]
+API_KEY = st.secrets["API_KEY"]
 
 # 1. Page Setup
 st.set_page_config(
@@ -83,7 +79,6 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# --- ส่วนประมวลผล (ร้องขอข้อมูลจาก Backend แทน) ---
 @st.fragment(run_every=1)
 def update_qr_code(selected_location):
     try:
@@ -142,10 +137,10 @@ def update_qr_code(selected_location):
         with center:
             st.error("Server Time-Out")
 
-# อัปเดตหน้าจอทุก 1 วินาที
+# refresh every 1 sec
 update_qr_code(selected_location)
 
-# ---- Support Dev (ส่วนเสริม UI เหมือนเดิม) ----
+# Support Dev
 @st.dialog("⭐ สนับสนุนผู้พัฒนา ⭐")
 def show_support_dialog():
     st.markdown("<h4 style='text-align: center;'>ขอบคุณสำหรับทุกการสนับสนุน 🙏</h4>", unsafe_allow_html=True)
