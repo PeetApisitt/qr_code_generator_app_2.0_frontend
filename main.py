@@ -6,7 +6,7 @@ import streamlit as st
 
 # --- กำหนดค่าการเชื่อมต่อ Backend ---
 # (หาก Deploy จริง ให้เปลี่ยน API_URL เป็นโดเมนของฝั่ง Backend Server เช่น https://my-backend.onrender.com/generate_qr)
-API_URL = "http://127.0.0.1:8000/generate_qr"
+API_URL = "https://qr-code-generator-app-2-0-backend.onrender.com"
 
 # ใช้ Streamlit Secrets สำหรับเก็บ API Key (เพื่อไม่ให้รหัสหลุดไปใน Github)
 # วิธีตั้งค่าในเครื่อง: สร้างโฟลเดอร์ .streamlit สร้างไฟล์ secrets.toml แล้วใส่ API_KEY = "my_super_secret_key_2026"
