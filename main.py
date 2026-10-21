@@ -11,6 +11,7 @@ try:
     API_KEY = st.secrets["API_KEY"]
 except FileNotFoundError:
     API_KEY = "my_super_secret_key_2026"
+    
 # 1. Page Setup
 st.set_page_config(
     page_title="Dynamic QR Generator", page_icon="icon.ico", layout="centered"
