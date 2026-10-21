@@ -121,7 +121,7 @@ def update_qr_code(selected_location):
                     f"""
                     <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
                         <img src="data:image/png;base64,{img_b64}" width="350" />
-                        <p style="text-align: center; color: gray; font-size: 14px; margin-top: 5px;">Scan QR Code</p>
+                        <p style="text-align: center; color: white; font-size: 14px; margin-top: 5px;">Scan QR Code</p>
                     </div>
                     """,
                     unsafe_allow_html=True,
