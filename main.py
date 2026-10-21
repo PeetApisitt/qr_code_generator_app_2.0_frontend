@@ -77,7 +77,7 @@ with select_center:
 # Header
 st.markdown(
     f"""
-    <h1 style='text-align: center; color: white;'>MyRTARF QR Code Check-in</h1>
+    <h2 style='text-align: center; color: white;'>MyRTARF QR Code Check-in</h2>
     <h3 style='text-align: center; font-size: 24px; color: white;'>{selected_location}</h3>
     """,
     unsafe_allow_html=True,
