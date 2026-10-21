@@ -11,7 +11,7 @@ try:
     API_KEY = st.secrets["API_KEY"]
 except FileNotFoundError:
     API_KEY = "my_super_secret_key_2026"
-    
+
 # 1. Page Setup
 st.set_page_config(
     page_title="Dynamic QR Generator", page_icon="icon.ico", layout="centered"
@@ -135,12 +135,12 @@ def update_qr_code(selected_location):
         else:
             _, center, _ = st.columns([1, 2, 1])
             with center:
-             st.error("เกิดข้อผิดพลาดในการสร้าง QR Code (ตรวจสอบ API Key หรือ สถานที่)")
+                st.error("เกิดข้อผิดพลาดในการสร้าง QR Code (ตรวจสอบ API Key หรือ สถานที่)")
 
     except requests.exceptions.RequestException:
         _, center, _ = st.columns([1, 2, 1])
         with center:
-        st.error("Server Time-Out")
+            st.error("Server Time-Out")
 
 # อัปเดตหน้าจอทุก 1 วินาที
 update_qr_code(selected_location)
