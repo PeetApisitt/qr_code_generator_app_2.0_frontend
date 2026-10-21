@@ -135,7 +135,7 @@ def update_qr_code(selected_location):
         else:
             _, center, _ = st.columns([1, 2, 1])
             with center:
-                st.error("เกิดข้อผิดพลาด! ตรวจสอบ API Key ")
+                st.error("เกิดข้อผิดพลาด! ตรวจสอบ API Key อีกครั้ง")
 
     except requests.exceptions.RequestException:
         _, center, _ = st.columns([1, 2, 1])
