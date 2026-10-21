@@ -4,15 +4,12 @@ import qrcode
 import requests
 import streamlit as st
 
-# --- กำหนดค่าการเชื่อมต่อ Backend ---
+# Backend Connection
 API_URL = "https://qr-code-generator-app-2-0-backend.onrender.com/generate_qr"
 
-# ใช้ Streamlit Secrets สำหรับเก็บ API Key (เพื่อไม่ให้รหัสหลุดไปใน Github)
-# วิธีตั้งค่าในเครื่อง: สร้างโฟลเดอร์ .streamlit สร้างไฟล์ secrets.toml แล้วใส่ API_KEY = "my_super_secret_key_2026"
 try:
     API_KEY = st.secrets["API_KEY"]
 except FileNotFoundError:
-    API_KEY = "my_super_secret_key_2026"
 
 # 1. Page Setup
 st.set_page_config(
@@ -53,7 +50,7 @@ hide_top_bar = """
                 """
 st.markdown(hide_top_bar, unsafe_allow_html=True)
 
-# รายชื่อสถานที่ให้ผู้ใช้เลือก (Frontend รู้แค่รายชื่อ แต่ไม่รู้บิตข้างใน)
+# Check-in location
 LOCATION_NAMES = [
     "ตึก ๑ ชั้น ๑ ลิฟต์ A, ฝสน.ศบท. ชั้น ๑",
     "ตึก ๑ ชั้น ๑ ลิฟต์ B",
@@ -63,7 +60,6 @@ LOCATION_NAMES = [
     "กพ.ทหาร ชั้น ๒ จุด C",
     "ขว.ทหาร ชั้น ๓",
     "กบ.ทหาร ชั้น ๔",
-    "บก.ศบท.",
     "สบ.ทหาร",
     "กรมแผนที่ทหาร จุดที่ ๑"
 ]
@@ -90,7 +86,6 @@ st.markdown(
 @st.fragment(run_every=1)
 def update_qr_code(selected_location):
     try:
-        # ยิง Request ไปหา FastAPI พร้อมแนบ X-API-KEY ไปด้วย
         headers = {"X-API-Key": API_KEY}
         response = requests.get(API_URL, params={"location": selected_location}, headers=headers)
         
@@ -100,7 +95,6 @@ def update_qr_code(selected_location):
             readable_time = data["readable_time"]
             current_ts = data["timestamp"]
 
-            # สร้าง QR Code จาก URL ที่ได้จาก Backend
             qr = qrcode.QRCode(
                 version=None,
                 error_correction=qrcode.constants.ERROR_CORRECT_M,
@@ -138,10 +132,14 @@ def update_qr_code(selected_location):
                     language="text",
             )
         else:
+            _, center, _ = st.columns([1, 2, 1])
+            with center:
              st.error("เกิดข้อผิดพลาดในการสร้าง QR Code (ตรวจสอบ API Key หรือ สถานที่)")
 
     except requests.exceptions.RequestException:
-        st.error("ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ Backend ได้ กรุณาตรวจสอบระบบเครือข่าย")
+        _, center, _ = st.columns([1, 2, 1])
+        with center:
+        st.error("Server Time-Out")
 
 # อัปเดตหน้าจอทุก 1 วินาที
 update_qr_code(selected_location)
@@ -161,7 +159,7 @@ st.markdown("""
     div[data-testid="stVerticalBlock"] > div:has(div.floating-btn-container) {
         position: fixed;
         bottom: 50px;
-        right: 20px; 
+        right: -200px; 
         z-index: 99999;
     }
 
