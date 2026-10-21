@@ -13,7 +13,7 @@ st.set_page_config(
     page_title="Dynamic QR Generator", page_icon="icon.ico", layout="centered"
 )
 st.markdown(
-    "<h1 style='color: white;'>Dynamic QR Generator</h1>",
+    "<h1 style='text-align: center; color: white;'>Dynamic QR Generator</h1>",
     unsafe_allow_html=True,
 )
 
