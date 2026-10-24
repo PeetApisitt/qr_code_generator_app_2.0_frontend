@@ -83,6 +83,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+# refresh every 1 sec
 @st.fragment(run_every=1)
 def update_qr_code(selected_location):
     try:
@@ -140,8 +141,6 @@ def update_qr_code(selected_location):
         _, center, _ = st.columns([1, 2, 1])
         with center:
             st.error("Server Time-Out")
-
-# refresh every 1 sec
 update_qr_code(selected_location)
 
 # Support Dev
